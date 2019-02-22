@@ -1,11 +1,36 @@
+@font-face {
+    font-family: 'molotregular';
+    src: url('../fonts/Molot-webfont.eot');
+    src: url('../fonts/Molot-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Molot-webfont.woff') format('woff'),
+    url('../fonts/Molot-webfont.ttf') format('truetype'),
+    url('../fonts/Molot-webfont.svg#molotregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'sansationregular';
+    src: url('../fonts/Sansation-Regular-webfont.eot');
+    src: url('../fonts/Sansation-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Sansation-Regular-webfont.woff') format('woff'),
+    url('../fonts/Sansation-Regular-webfont.ttf') format('truetype'),
+    url('../fonts/Sansation-Regular-webfont.svg#sansationregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "sansationregular", Arial, sans-serif;
+    font-size: 20px;
 }
 
 body {
     height: 1vh;
+    padding: 20px;
     background-image: url("../images/bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -14,11 +39,35 @@ body {
     color: #FFFFFF;
 }
 
-.list {
+.characterList {
     list-style-type: none;
+    margin-bottom: 20px;
+}
+
+.characterHeader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .thumbnail {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
+    margin-right: 30px;
+    border: 1px solid black;
+}
+
+.name {
+    font-family: "molotregular", Arial, sans-serif;
+    font-size: 100px;
+}
+
+.infoHolder {
+    text-align: justify;
+}
+
+.infoTitle {
+    color: yellow;
+    padding-bottom: 10px;
 }
