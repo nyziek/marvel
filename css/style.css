@@ -67,7 +67,27 @@ body {
     text-align: justify;
 }
 
-.infoTitle {
+.title {
     color: yellow;
-    padding-bottom: 10px;
+    padding: 10px 0;
+}
+
+.comicsList {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.comicsListItem {
+    width: 350px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.comicThumbnail {
+    width: 100px;
+    height: auto;
+    margin: 0 20px;
+    border: 1px solid black;
 }

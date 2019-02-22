@@ -1,6 +1,6 @@
 $(function() {
 
-    var mainApiUrl = "https://gateway.marvel.com:443/v1/public/characters?limit=100&apikey=c767374de595fc64ed5dea718a47f2d1";
+    var mainApiUrl = "https://gateway.marvel.com:443/v1/public/characters?limit=5&apikey=c767374de595fc64ed5dea718a47f2d1";
     var characterApiUrl = "";
     var characterList = $(".characterList");
 
@@ -13,6 +13,20 @@ $(function() {
                 </option>
             `);
         }
+    }
+
+    function insertComicContent(comic) {
+
+        comicsList = $(".comicsList");
+
+        comicsList.append(`
+                <li class="comicsListItem">
+                    <div class="comicThumbnailHolder">
+                        <img class="comicThumbnail" src="${comic[0].thumbnail.path}.${comic[0].thumbnail.extension}">
+                    </div>
+                    <p>${comic[0].title}</p>
+                </li>
+            `);
     }
 
     function insertCharacterContent(character) {
@@ -33,8 +47,6 @@ $(function() {
             </div>    
         `);
 
-        console.log(character.description);
-
         if(character.description === "") {
             infoHolder.replaceWith(`
                 <div class="infoHolder">
@@ -45,10 +57,34 @@ $(function() {
         } else {
             infoHolder.replaceWith(`
                 <div class="infoHolder">
-                    <p class="infoTitle">Description:</p>
+                    <p class="title">Description:</p>
                     <p class="info">${character.description}</p>
                 </div>
             `);
+        }
+
+        var comicsListHolder = $(".comicsListHolder");
+
+        comicsListHolder.replaceWith(`
+            <div class="comicsListHolder">
+                <p class="title">Apears in:</p>
+                <ul class="comicsList">
+                </ul>
+            </div>
+        `);
+
+        for (var i = 0; i < character.comics.items.length; i++) {
+
+            var comicApiUrl = character.comics.items[i].resourceURI + "?limit=100&apikey=c767374de595fc64ed5dea718a47f2d1";
+
+            $.ajax(comicApiUrl)
+                .done(function(data) {
+                    console.log(data.data.results);
+
+                    var comic = data.data.results;
+
+                    insertComicContent(comic);
+                });
         }
     }
 
@@ -66,8 +102,6 @@ $(function() {
                     var selectedOptionId = $(this).children(":selected").attr("id");
 
                     characterApiUrl = characters[selectedOptionId].resourceURI + "?apikey=c767374de595fc64ed5dea718a47f2d1";
-
-                    console.log("I work");
 
                     loadCharacter();
                 });
