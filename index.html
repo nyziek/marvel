@@ -7,9 +7,11 @@
 </head>
 <body class="body">
 
-    <p>Choose Marvel character to display info:</p>
+    <ul class="firstLettersList">
+    </ul>
+
+    <p class="title">Choose Marvel character to display info:</p>
     <select class="characterList">
-        <option></option>
     </select>
 
     <div class="characterHeader">
@@ -20,6 +22,11 @@
     <div class="infoHolder"></div>
 
     <div class="comicsListHolder"></div>
+
+    <div id="loading">
+        <img id="spiderman" src="images/spiderman.png">
+        <div>LOADING...</div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./js/app.js"></script>

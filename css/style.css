@@ -30,7 +30,7 @@
 
 body {
     height: 1vh;
-    padding: 20px;
+    padding: 10px 20px;
     background-image: url("../images/bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -39,16 +39,38 @@ body {
     color: #FFFFFF;
 }
 
+.firstLettersList,
 .characterList {
     list-style-type: none;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+}
+
+.firstLettersList {
+    margin-left: -5px;
+}
+
+.firstLettersList li {
+    display: inline-block;
+    width: 25px;
+    padding: 0 5px;
+    text-align: center;
+    cursor: pointer;
+    color: silver;
+}
+
+.firstLettersList li:hover {
+    color: yellow;
+}
+
+li.chosenLetter {
+    background: purple;
 }
 
 .characterHeader {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .thumbnail {
@@ -88,6 +110,31 @@ body {
 .comicThumbnail {
     width: 100px;
     height: auto;
-    margin: 0 20px;
+    margin: 5px 20px 5px 0;
     border: 1px solid black;
+}
+
+.comicInfo {
+    margin-right: 10px;
+}
+
+#loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(255, 255, 255, 0.8);
+    opacity: 0.4;
+    color: black;
+}
+
+#loading > div {
+    font-size: 100px;
+    font-weight: bold;
 }
