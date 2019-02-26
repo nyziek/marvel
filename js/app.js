@@ -12,6 +12,7 @@ $(function() {
 
     let mainApiUrl = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=3&limit=100&apikey=c767374de595fc64ed5dea718a47f2d1";
     let characterApiUrl = "";
+    let collectionApiUrl = "";
 
     // Character list
 
@@ -130,16 +131,33 @@ $(function() {
 
         comicsList.append(`
                 <li class="comicsListItem">
-                    <img class="comicThumbnail" src="${comic[0].thumbnail.path}.${comic[0].thumbnail.extension}">
-                    <p class="comicInfo">${comic[0].title}</p>
+                    <img class="comicThumbnail" src="${comic.thumbnail.path.replace("http", "https")}.${comic.thumbnail.extension}">
+                    <p class="comicInfo">${comic.title}</p>
                 </li>
             `);
+    };
+
+    const comicList = character => {
+
+        collectionApiUrl = (character.comics.collectionURI + "?dateRange=1900-01-01%2C2019-12-31&orderBy=onsaleDate&limit=100&apikey=c767374de595fc64ed5dea718a47f2d1").replace("http", "https");
+
+        $.ajax(collectionApiUrl)
+
+            .done(function(data) {
+
+                const collection = data.data.results;
+
+                collection.forEach(comic => {
+
+                    insertComicContent(comic);
+                });
+            });
     };
 
     const insertCharacterContent = character => {
 
         thumbnailHolder.html(`
-            <img class="thumbnail" src="${character.thumbnail.path}.${character.thumbnail.extension}">
+            <img class="thumbnail" src="${character.thumbnail.path.replace("http", "https")}.${character.thumbnail.extension}">
         `);
 
         nameHolder.html(`
@@ -164,31 +182,7 @@ $(function() {
             </ul>
         `);
 
-        const collectionApiUrl = character.comics.collectionURI + "?limit=20&apikey=c767374de595fc64ed5dea718a47f2d1";
-
-        let collection = [];
-
-        $.ajax(collectionApiUrl)
-            .done(function(data) {
-
-                collection = data.data.results;
-
-                console.log(collection);
-
-                collection.forEach(comic => {
-                    let comicApiUrl = comic.resourceURI + "?apikey=c767374de595fc64ed5dea718a47f2d1";
-
-                    comicApiUrl = comicApiUrl.replace("http", "https");
-
-                    $.ajax(comicApiUrl)
-                        .done(function(data) {
-
-                            const comicInfo = data.data.results;
-
-                            insertComicContent(comicInfo);
-                        });
-                });
-            });
+        comicList(character);
     };
 
     const loadCharacter = () => {
@@ -197,8 +191,6 @@ $(function() {
             .done(function(data) {
 
                 const character = data.data.results[0];
-
-                console.log(character);
 
                 insertCharacterContent(character);
             });
@@ -210,8 +202,7 @@ $(function() {
 
         if(characters[selectedOptionId] !== undefined) {
 
-            characterApiUrl = characters[selectedOptionId].resourceURI + "?apikey=c767374de595fc64ed5dea718a47f2d1";
-            characterApiUrl = characterApiUrl.replace("http", "https");
+            characterApiUrl = (characters[selectedOptionId].resourceURI + "?apikey=c767374de595fc64ed5dea718a47f2d1").replace("http", "https");
 
             loadCharacter();
         }
