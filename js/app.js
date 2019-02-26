@@ -35,6 +35,10 @@ $(function() {
     const spiderman = $("#spiderman");
     const loadingText = $("#loadingText");
 
+    // Comic cover
+
+    const comicCover = $(".comicCover");
+
 // METHODS
 
     // Data loading page
@@ -208,6 +212,32 @@ $(function() {
         }
     };
 
+    // Comic cover enlargement
+
+    function showCover() {
+
+        console.log("hello");
+
+        comicCover.show();
+
+        console.log($(this).attr("src"));
+
+        comicCover.append(`
+            <div class="comicCoverHolder">
+                <img src="${$(this).attr("src")}">
+            </div>
+        `)
+    }
+
+    const hideCover = () => {
+
+        comicCover.html(`
+            <div class="comicCoverClose">CLOSE (X)</div>
+        `);
+
+        comicCover.hide();
+    };
+
 // PAGE LOGIC
 
     // Loading page display
@@ -233,5 +263,11 @@ $(function() {
     // Choosing character from characters list
 
     characterList.on("change", changeCharacter);
+
+    // Enlarging comic cover
+
+    comicsListHolder.on("click", "img", showCover);
+
+    comicCover.on("click", ".comicCoverClose", hideCover);
 
 });

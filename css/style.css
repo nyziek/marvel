@@ -112,10 +112,44 @@ li.chosenLetter {
     height: auto;
     margin: 5px 20px 5px 0;
     border: 1px solid black;
+    cursor: pointer;
 }
 
 .comicInfo {
     margin-right: 10px;
+}
+
+.comicCover {
+    display: none;
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    height: 90%;
+    width: 90%;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    z-index: 1;
+    text-align: center;
+}
+
+.comicCoverClose {
+    padding-top: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.comicCoverHolder {
+    height: calc(100% - 26px);
+    width: 90%;
+    margin: 0 5%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comicCoverHolder > img {
+    max-height: 90%;
+    max-width: 100%;
 }
 
 #loading {
