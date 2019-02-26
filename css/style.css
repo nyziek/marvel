@@ -29,14 +29,16 @@
 }
 
 body {
-    height: 1vh;
+    height: 100vh;
     padding: 10px 20px;
+    background: black;
     background-image: url("../images/bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: top;
     background-attachment: fixed;
     overflow-y: auto;
-    color: #FFFFFF;
+    color: white;
 }
 
 .firstLettersList,

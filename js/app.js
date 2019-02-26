@@ -216,11 +216,7 @@ $(function() {
 
     function showCover() {
 
-        console.log("hello");
-
         comicCover.show();
-
-        console.log($(this).attr("src"));
 
         comicCover.append(`
             <div class="comicCoverHolder">
