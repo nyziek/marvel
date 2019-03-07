@@ -28,6 +28,7 @@
 }
 
 body {
+    width: 100vw;
     height: 100vh;
     padding: 10px 20px;
     background: black;
@@ -186,8 +187,34 @@ li.chosenLetter {
 }
 
 @media only screen and (max-width: 768px) {
+
     body {
-        background-image: none;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
+
+    .characterHeader {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+
+    .name {
+        text-align: center;
+    }
+
+    .thumbnail {
+        margin-right: 0;
+    }
+
+    #loading > div {
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .name {
+        font-size: 3rem;
+    }
+
 }

@@ -134,11 +134,11 @@ $(function() {
         const comicsList = $(".comicsList");
 
         comicsList.append(`
-                <li class="comicsListItem">
-                    <img class="comicThumbnail" src="${comic.thumbnail.path.replace("http", "https")}.${comic.thumbnail.extension}">
-                    <p class="comicInfo">${comic.title}</p>
-                </li>
-            `);
+            <li class="comicsListItem">
+                <img class="comicThumbnail" src="${comic.thumbnail.path.replace("http", "https")}.${comic.thumbnail.extension}">
+                <p class="comicInfo">${comic.title}</p>
+            </li>
+        `);
     };
 
     const comicList = character => {
@@ -151,10 +151,23 @@ $(function() {
 
                 const collection = data.data.results;
 
-                collection.forEach(comic => {
+                if(collection.length !== 0) {
 
-                    insertComicContent(comic);
-                });
+                    collection.forEach(comic => {
+
+                        insertComicContent(comic);
+                    });
+
+                } else {
+
+                    const comicsList = $(".comicsList");
+
+                    comicsList.append(`
+                        <li class="comicsListItem">
+                            <p class="comicInfo">APPEARANCES NOT FOUND                </li>
+                    `);
+                }
+
             });
     };
 
@@ -168,17 +181,10 @@ $(function() {
             <p class="name">${character.name}</p>
         `);
 
-        if(character.description === "") {
-            infoHolder.html(`
+        infoHolder.html(`
                 <p class="title">Description:</p>
-                <p class="info">DESCRIPTION NOT FOUND</p>
+                <p class="info">${character.description ? character.description : "DESCRIPTION NOT FOUND"}</p>
             `);
-        } else {
-            infoHolder.html(`
-                <p class="title">Description:</p>
-                <p class="info">${character.description}</p>
-            `);
-        }
 
         comicsListHolder.html(`
             <p class="title">Apears in:</p>
@@ -204,7 +210,7 @@ $(function() {
 
         const selectedOptionId = characterList.children(":selected").attr("id");
 
-        if(characters[selectedOptionId] !== undefined) {
+        if(characters[selectedOptionId]) {
 
             characterApiUrl = (characters[selectedOptionId].resourceURI + "?apikey=c767374de595fc64ed5dea718a47f2d1").replace("http", "https");
 
