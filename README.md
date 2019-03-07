@@ -17,6 +17,7 @@ Technologies used:
 * ES6
 * HTML
 * CSS
+* RWD
 
 Preview:
 
