@@ -57,8 +57,8 @@ $(function() {
 
     const hideLoadingPage = () => {
         loadingPage.hide();
-        spiderman.stop();
-        loadingText.stop();
+        spiderman.stop(true);
+        loadingText.stop(true);
     };
 
     // List of first letters of characters' names - list display
