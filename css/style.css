@@ -28,7 +28,7 @@
 }
 
 body {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     padding: 10px 20px;
     background: black;
@@ -70,6 +70,7 @@ li.chosenLetter {
 
 .characterList {
     font-size: 1rem;
+    max-width: calc(100% - 20px);
 }
 
 .characterHeader {

@@ -46,8 +46,8 @@ $(function() {
     const loadingPageAnimation = () => {
         spiderman.animate({opacity:'0.4'}, 700);
         loadingText.animate({opacity:'0.3'}, 700);
-        spiderman.animate({opacity:'0.9'}, 700);
-        loadingText.animate({opacity:'0.8'}, 700, loadingPageAnimation);
+        spiderman.animate({opacity:'1'}, 700);
+        loadingText.animate({opacity:'0.9'}, 700, loadingPageAnimation);
     };
 
     const showLoadingPage = () => {
